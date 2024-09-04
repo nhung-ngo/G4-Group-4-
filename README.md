@@ -1,8 +1,10 @@
 ##Title: G4
+
 ##Team Members
 Nhung Ngo, Viet Nguyen, Andrian Sam
 
 ##Description
+
 G4 is an easy-to-use, comprehensive travel software that pairs travelers with ideal locations based on their interests. Whether you're looking for "beaches," "mountains," or "historical sites," 
 G4 will show you where to go for food, entertainment, and more.
 
