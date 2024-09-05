@@ -1,7 +1,7 @@
 ##Title: G4
 
 ##Team Members
-Nhung Ngo, Viet Nguyen, Adrian Sam
+Nhung Ngo, Viet Nguyen, Adria Sam
 
 ##Description
 
