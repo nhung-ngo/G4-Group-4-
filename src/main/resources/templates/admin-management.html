@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User and Service Management</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav>
+    <h4>G4_Admin</h4>
+</nav>
+<div class="container">
+  <h2>User List</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="user : ${userList}">
+      <td data-th-text="${user.userId}"></td>
+      <td data-th-text="${user.name}"></td>
+      <td data-th-text="${user.email}"></td>
+      <td data-th-text="${user.status == 'banned' ? 'Banned' : 'Active'}"></td>
+      <td>
+        <form data-th-action="@{/users/ban/{userId}(userId=${user.userId})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-warning" data-th-if="${user.status != 'banned'}">Ban</button>
+        </form>
+        <form data-th-action="@{/users/unban/{userId}(userId=${user.userId})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-success" data-th-if="${user.status == 'banned'}">Unban</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h2>Review List</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Review ID</th>
+      <th>Content</th>
+      <th>Rating</th>
+      <th>User ID</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="review : ${reviewList}">
+      <td data-th-text="${review.reviewID}"></td>
+      <td data-th-text="${review.reviews}"></td>
+      <td data-th-text="${review.rating}"></td>
+      <td data-th-text="${review.user.userId}"></td> <!-- Access userId through the User object -->
+      <td>
+        <!-- Delete Review -->
+        <form data-th-action="@{/reviews/delete/{reviewId}(reviewId=${review.reviewID})}" method="post" style="display: inline;">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <!-- Ban User -->
+        <form data-th-action="@{/users/ban/{userId}(userId=${review.user.userId})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-warning" data-th-if="${review.user.status != 'banned'}">Ban</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+
+</div>
+</body>
+
+
