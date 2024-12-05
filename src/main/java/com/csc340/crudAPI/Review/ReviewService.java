@@ -13,7 +13,8 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-
+    @Autowired
+    private ReplyRepository replyRepository;
 
 
 
@@ -30,6 +31,7 @@ public class ReviewService {
     }
 
     public void deleteReviewById(int reviewID) {
+        replyRepository.deleteByReviewId(reviewID);
         reviewRepository.deleteById(reviewID);
     }
 

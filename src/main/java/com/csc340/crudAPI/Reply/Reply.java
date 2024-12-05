@@ -13,7 +13,7 @@ public class Reply {
 
     private String content;
     @ManyToOne
-    @JoinColumn(name = "reviewid", referencedColumnName = "reviewid")
+    @JoinColumn(name = "reviewid", referencedColumnName = "reviewID")
     private Review review; // Reference to the parent review
 
     public Reply() {

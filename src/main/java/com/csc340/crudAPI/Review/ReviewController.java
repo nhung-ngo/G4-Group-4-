@@ -34,12 +34,12 @@ public class ReviewController {
     @GetMapping("/all")
     public String getAllReviews(Model model) {
         model.addAttribute("reviewList", reviewService.getAllReviews()); // Add reviews to the model
-        return "admin-user-list"; // Name of the Thymeleaf template
+        return "admin-management"; // Name of the Thymeleaf template
     }
     @PostMapping("/delete/{reviewId}")
-    public String deleteReview(@PathVariable int reviewId) {
-        reviewService.deleteReviewById(reviewId); // Delete the review
-        return "redirect:/reviews/all"; // Redirect back to the review list
+    public String deleteReview(@PathVariable("reviewId") int reviewID) {
+        reviewService.deleteReviewById(reviewID); // Correct method usage
+        return "redirect:/users/all"; // Redirect to review list
     }
 
 

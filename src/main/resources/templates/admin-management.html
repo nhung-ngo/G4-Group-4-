@@ -2,18 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>User and Service Management</title>
-  <link rel="stylesheet" href="/static/styles.css">
+  <title>Manage User</title>
+  <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<nav>
-    <h4>G4_Admin</h4>
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <a class="navbar-brand" href="#">
+    <img src="/logo.jpg" alt="G4 Logo" class="navbar-logo">
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/stats/overview">Statistic</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/users/all">Manage User</a>
+      </li>
+    </ul>
+  </div>
 </nav>
-<div class="container">
-  <h2>User List</h2>
-  <table class="table">
-    <thead>
+
+<div class="container mt-4">
+  <!-- User List -->
+  <div class="mb-5">
+    <h3>User List</h3>
+    <table class="table table-striped">
+      <thead class="thead-light">
     <tr>
       <th>User ID</th>
       <th>Name</th>
@@ -39,9 +54,9 @@
     </tr>
     </tbody>
   </table>
-  <h2>Review List</h2>
-  <table class="table">
-    <thead>
+    <h3>Review List</h3>
+    <table class="table table-striped">
+      <thead class="thead-light">
     <tr>
       <th>Review ID</th>
       <th>Content</th>
@@ -61,6 +76,7 @@
         <form data-th-action="@{/reviews/delete/{reviewId}(reviewId=${review.reviewID})}" method="post" style="display: inline;">
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
+
         <!-- Ban User -->
         <form data-th-action="@{/users/ban/{userId}(userId=${review.user.userId})}" method="post" style="display:inline;">
           <button type="submit" class="btn btn-warning" data-th-if="${review.user.status != 'banned'}">Ban</button>
