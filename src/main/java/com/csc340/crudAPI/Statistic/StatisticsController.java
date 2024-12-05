@@ -13,13 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/stats")
+
 public class StatisticsController {
 
     @Autowired
     private StatisticsService statisticService;
 
-    @GetMapping("/overview")
+    @GetMapping("/ADMIN/stats/overview")
     public String getStatisticsOverview(Model model) {
         model.addAttribute("totalUsers", statisticService.getTotalUsers());
         model.addAttribute("totalBookings", statisticService.getTotalBooking());

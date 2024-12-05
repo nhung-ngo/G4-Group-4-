@@ -39,7 +39,7 @@ public class ReviewController {
     @PostMapping("/delete/{reviewId}")
     public String deleteReview(@PathVariable("reviewId") int reviewID) {
         reviewService.deleteReviewById(reviewID); // Correct method usage
-        return "redirect:/users/all"; // Redirect to review list
+        return "redirect:/ADMIN/all"; // Redirect to review list
     }
 
 

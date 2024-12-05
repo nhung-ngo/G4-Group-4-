@@ -1,6 +1,8 @@
 package com.csc340.crudAPI.user;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -13,8 +15,8 @@ public class User {
     private String password;
     private String status;
 
-//    @Column(nullable = false)
-//    private String role; // Either "ADMIN" or "CUSTOMER"
+    @Column(nullable = false)
+    private String role; // Either "ADMIN" or "CUSTOMER"
 
 
     // Constructors, Getters, and Setters
@@ -27,16 +29,16 @@ public class User {
         this.email = email;
         this.password = password;
         this.status = status;
-//        this.role = role;
+        this.role = role;
     }
 
-//    public String getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(String role) {
-//        this.role = role;
-//    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Long getUserId() {
         return userId;
@@ -76,5 +78,19 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) &&
+                Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, email);
     }
 }

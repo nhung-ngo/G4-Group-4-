@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.jpg" alt="G4 Logo" class="navbar-logo">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/stats/overview">Statistic</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/users/all">Manage User</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<div class="container mt-5">
+    <h2 class="text-center">Login</h2>
+    <form th:action="@{/login}" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="username" class="form-control" required>
+        </div>
+        <div class="form-group mt-3">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Login</button>
+    </form>
+</div>
+</body>
+</html>

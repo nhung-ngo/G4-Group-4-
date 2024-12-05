@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long>  {
     @Query(value = "SELECT COUNT(user_id) FROM User", nativeQuery = true)
     int countTotalUsers();
 
-//    Optional<User> findByName(String name);
+    Optional<User> findByName(String name);
 
 }

@@ -39,13 +39,7 @@ public class SerService {
     public void save(Ser service) {
         serviceRepository.save(service);
     }
-//    public void deleteService(int serviceId) {
-//        serviceRepository.deleteById((long) serviceId);
-//    }
-//
-//    public void undeleteService(int serviceId) {
-//        serviceRepository.undeleteById((long) serviceId);
-//    }
+
 
     public void deleteService(Long serviceId) {
         Ser service = serviceRepository.findById((long) serviceId).orElseThrow();
