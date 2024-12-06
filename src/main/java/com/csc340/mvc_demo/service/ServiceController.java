@@ -52,36 +52,13 @@ public class ServiceController {
         Ser service = serviceService.getServiceById(serviceId);
         model.addAttribute("userId",userId);
         model.addAttribute("service", service);
+        List<Review> reviews = reviewService.getReviewsByServiceID(serviceId);
+        model.addAttribute("reviews", reviews);
         model.addAttribute("title", "Service Details");
         return "user/service-details"; // Renders service-details.html
     }
 
-    @PostMapping("/user/{serviceId}/reserve")
-    public String makeReservation(@PathVariable int serviceId,
-                                  @RequestParam String reservationDate,
-                                  @RequestParam int guests,
-                                  Model model) {
-        // Logic for making a reservation
-        Ser service = serviceService.getServiceById(serviceId);
 
-        // Add reservation confirmation to the model
-        model.addAttribute("service", service);
-        model.addAttribute("message", "Reservation successful for " + guests + " guests on " + reservationDate);
-        return "user/service-details"; // Return to the same page with confirmation
-    }
-
-    @PostMapping("/user/{serviceId}/payment")
-    public String makePayment(@PathVariable int serviceId,
-                              @RequestParam double amount,
-                              Model model) {
-        // Logic for payment handling
-        Ser service = serviceService.getServiceById(serviceId);
-
-        // Payment integration logic can be added here
-        model.addAttribute("service", service);
-        model.addAttribute("message", "Payment of $" + amount + " was successful!");
-        return "user/service-details"; // Return to the same page with payment confirmation
-    }
 
 
 

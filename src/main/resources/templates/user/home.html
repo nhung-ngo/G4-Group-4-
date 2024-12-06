@@ -50,6 +50,7 @@
             <div class="profile-icon" onclick="toggleDropdown()">👤</div>
             <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
                 <a th:href="@{/users/profile(userId=${userId})}">Profile</a>
+                <a th:href="@{/booking/history(userId=${userId})}">Booking History</a>
                 <a href="/users/logout">Log Out</a> <!-- Log Out redirects to login -->
             </div>
         </div>

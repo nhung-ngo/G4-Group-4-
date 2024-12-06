@@ -26,11 +26,19 @@ public class UserController {
     @PostMapping("/login")
     public String handleLogin(@RequestParam String email, @RequestParam String password, Model model) {
         User user = userService.authenticate(email, password);
+        String status = user.getStatus();
+        System.out.println(status);
         if (user != null) {
-            int userId = user.getUserId();
-            model.addAttribute("userId", userId);
-            model.addAttribute("user", user);
-            return "redirect:/services/home?userId=" + userId; // Redirect to the dashboard or another page
+            if(!status.equals("ban")) {
+                int userId = user.getUserId();
+                model.addAttribute("userId", userId);
+                model.addAttribute("user", user);
+                return "redirect:/services/home?userId=" + userId; // Redirect to the dashboard or another page
+            }
+           else {
+               model.addAttribute("error", "This account is banned");
+                return "user/login";
+           }
         } else {
             model.addAttribute("error", "Invalid email or password");
             return "user/login";

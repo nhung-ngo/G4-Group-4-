@@ -51,7 +51,7 @@
   <p><strong>Comment:</strong> <span th:text="${review.reviews}">Review content</span></p>
   <p><strong>By:</strong> <span th:text="${review.user.name}">User</span></p>
   <div class="card-footer d-flex justify-content-between">
-    <td><a th:href="@{/reviews/{reviewId}(reviewId=${review.reviewId})}" class="btn btn-warning btn-sm">View</a></td>
+   <!-- <td><a th:href="@{/reviews/{reviewId}(review.reviewId})" class="btn btn-warning btn-sm">View</a></td> -->
 
   </div>
 

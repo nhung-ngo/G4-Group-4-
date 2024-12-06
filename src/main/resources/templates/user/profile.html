@@ -51,6 +51,7 @@
                 <div class="profile-icon text-white" onclick="toggleDropdown()">👤</div>
                 <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
                     <a th:href="@{/users/profile(userId=${userId})}">Profile</a>
+                    <a th:href="@{/booking/history(userId=${userId})}">Booking History</a>
                     <a href="/users/login">Log Out</a>
                 </div>
             </div>

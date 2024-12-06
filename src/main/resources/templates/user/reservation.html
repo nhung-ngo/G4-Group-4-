@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Service</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body style="background-color: #f9f9f9;">
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Travel Services</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" th:href="@{/services/home(userId=${userId})}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/users/profile(userId=${userId})}">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Reserve Service</h3>
+    </div>
+    <div class="card-body">
+      <form th:action="@{/booking/confirm}" method="post">
+        <input type="hidden" th:value="${service.serviceId}" name="serviceId" />
+        <input type="hidden" th:value="${user.userId}" name="userId" />
+
+        <div class="mb-3">
+          <label for="serviceName" class="form-label"><strong>Service:</strong></label>
+          <p id="serviceName" class="form-control-plaintext" th:text="${service.title}"></p>
+        </div>
+
+        <div class="mb-3">
+          <label for="servicePrice" class="form-label"><strong>Price:</strong></label>
+          <p id="servicePrice" class="form-control-plaintext">$<span th:text="${service.price}"></span></p>
+        </div>
+
+        <div class="mb-3">
+          <label for="totalPayment" class="form-label"><strong>Total Payment:</strong></label>
+          <input type="text" id="totalPayment" class="form-control" th:value="${service.price}" name="totalPayment" readonly />
+        </div>
+
+        <div class="text-end">
+          <button type="submit" class="btn btn-success">Confirm Reservation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
