@@ -2,12 +2,11 @@ package com.csc340.crudAPI.Booking;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-@Controller
+@RestController
 @RequestMapping("/bookings")
 public class BookingController {
 
@@ -41,7 +40,8 @@ public class BookingController {
 
     // DELETE a booking
     @DeleteMapping("/{id}")
-    public void deleteBooking(@PathVariable Integer id) {
+    public List<Booking> deleteBooking(@PathVariable Integer id) {
          bookingService.deleteBooking(id);
+         return bookingService.getAllBookings();
     }
 }

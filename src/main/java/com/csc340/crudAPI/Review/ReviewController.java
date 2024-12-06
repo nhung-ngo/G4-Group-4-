@@ -18,16 +18,29 @@ public class ReviewController {
 
     @Autowired
     private ReplyService replyService;
+    // POST a reply to a specific review
+    @PostMapping("/{reviewID}/reply")
+    public String createReplyForReview(@PathVariable int reviewID,
+                                       @RequestParam String content,
+                                       @RequestParam int serviceID,
+                                       Model model) {
+        // Create a new reply object and associate it with the review
+        Reply reply = new Reply(content, reviewService.getReviewById(reviewID));
 
-    @GetMapping("/services/{serviceID}")
-    public List<Review> getReviewsByServiceID(@PathVariable int serviceID) {
-        return reviewService.getReviewsByServiceID(serviceID);
-    }
+        // Save the reply and retrieve the updated list of replies
 
-    // GET all replies for a specific review
-    @GetMapping("/{reviewID}/replies")
-    public List<Reply> getRepliesByReviewId(@PathVariable int reviewID) {
-        return replyService.getRepliesByReviewId(reviewID);
+        // Fetch the service details and reviews again to refresh the page
+        model.addAttribute("service", reviewService.getReviewsByServiceID(serviceID));
+        List<Review> reviews = reviewService.getReviewsByServiceID(serviceID);
+        model.addAttribute("reviews", reviews);
+        for (Review review : reviews) {
+            int reviewId = review.getReviewID();
+            List<Reply> replies = replyService.getRepliesByReviewId(reviewId);
+            model.addAttribute("replies_" + reviewId, replies);
+        }
+
+        // Redirect back to the service details page
+        return "redirect:/reviews/services/" + serviceID;
     }
 
     // GET all reviews
@@ -42,20 +55,5 @@ public class ReviewController {
         return "redirect:/ADMIN/all"; // Redirect to review list
     }
 
-
-    @DeleteMapping("/{reviewID}")
-    public void deleteReviewById(@PathVariable int reviewID) {
-        reviewService.deleteReviewById(reviewID);
-    }
-    @DeleteMapping("/replies/{replyID}")
-    public void deleteReplyById(@PathVariable int replyID) {
-        replyService.deleteReplyById(replyID);
-    }
-
-    @PostMapping
-    public Review createReview(@RequestBody Review review) {
-        return reviewService.createReview(review);
-    }
 }
-
 

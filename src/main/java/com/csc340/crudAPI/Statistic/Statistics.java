@@ -10,7 +10,7 @@ public class Statistics {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int statsId;
+    private int id;
 
     private String action;
 

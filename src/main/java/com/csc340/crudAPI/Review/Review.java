@@ -1,11 +1,8 @@
 package com.csc340.crudAPI.Review;
 
-import com.csc340.crudAPI.Reply.Reply;
 import com.csc340.crudAPI.service.Ser;
 import com.csc340.crudAPI.user.User;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "reviews")
@@ -15,11 +12,11 @@ public class Review {
     private int reviewID;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "userid")
     private User user; // Reference to the parent review4
 
     @ManyToOne
-    @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
+    @JoinColumn(name = "service_id", referencedColumnName = "serviceid")
     private Ser service; // Reference to the parent review
 
     @Column
@@ -28,8 +25,6 @@ public class Review {
     @Column(nullable = false)
     private int rating;
 
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Reply> replies; // List of associated replies
 
 
     public Review() {

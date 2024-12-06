@@ -1,23 +1,17 @@
 package com.csc340.crudAPI.Statistic;
 
-import com.csc340.crudAPI.Reply.ReplyService;
-import com.csc340.crudAPI.Review.ReviewRepository;
-import com.csc340.crudAPI.Review.ReviewService;
-import com.csc340.crudAPI.service.SerService;
-import com.csc340.crudAPI.service.ServiceRepository;
-import com.csc340.crudAPI.user.UserRepository;
-import com.csc340.crudAPI.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-
 public class StatisticsController {
 
     @Autowired
     private StatisticsService statisticService;
+
+
 
     @GetMapping("/ADMIN/stats/overview")
     public String getStatisticsOverview(Model model) {
@@ -28,7 +22,6 @@ public class StatisticsController {
         return "statistic";
     }
 }
-
 
 
 

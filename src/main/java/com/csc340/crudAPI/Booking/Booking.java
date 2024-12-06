@@ -1,7 +1,5 @@
 package com.csc340.crudAPI.Booking;
 
-import com.csc340.crudAPI.Review.Review;
-
 import com.csc340.crudAPI.service.Ser;
 import com.csc340.crudAPI.user.User;
 import jakarta.persistence.*;

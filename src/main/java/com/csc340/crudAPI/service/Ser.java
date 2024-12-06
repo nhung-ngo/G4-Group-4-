@@ -4,7 +4,7 @@ import com.csc340.crudAPI.user.User;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "service")
+@Table(name = "Service")
 public class Ser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,8 @@ public class Ser {
 
     public Ser() {}
 
-    public Ser(User user, String title, String imagePath, double price, String description, String location, String category, String status) {
+    public Ser(int serviceId, User user, String title, String imagePath, double price, String description, String location, String category, String status) {
+        this.serviceId= serviceId;
         this.user = user;
         this.title = title;
         this.imagePath = imagePath;
@@ -37,6 +38,38 @@ public class Ser {
         this.status = status;
     }
 
+    public Ser(User user, String title, String imagePath, double price, String description, String location, String category, String status) {
+        this.user = user;
+        this.title = title;
+        this.imagePath = imagePath;
+        this.price = price;
+        this.description = description;
+        this.location = location;
+        this.category = category;
+        this.status = status;
+    }
+    public Ser( Ser service) {
+        this.serviceId= serviceId;
+        this.user = user;
+        this.title = title;
+        this.imagePath = imagePath;
+        this.price = price;
+        this.description = description;
+        this.location = location;
+        this.category = category;
+        this.status = status;
+    }
+    public Ser( Ser service, User user) {
+        this.serviceId= serviceId;
+        this.user = user;
+        this.title = title;
+        this.imagePath = imagePath;
+        this.price = price;
+        this.description = description;
+        this.location = location;
+        this.category = category;
+        this.status = status;
+    }
     public User getUser() {
         return user;
     }
@@ -44,7 +77,6 @@ public class Ser {
     public void setUser(User user) {
         this.user = user;
     }
-
     public int getServiceId() {
         return serviceId;
     }

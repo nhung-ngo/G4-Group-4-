@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class SerService {
+    private static final String IMAGE_UPLOAD_DIR = "uploads/";
+
     @Autowired
     private ServiceRepository serviceRepository;
 
@@ -15,16 +17,22 @@ public class SerService {
         return serviceRepository.findAll();
     }
 
-    public Optional<Ser> getServiceById(int serviceId) {
-        return serviceRepository.findById((long) serviceId);
+    public List<Ser> getServicesByUserId(int userId) {
+       return serviceRepository.findByUserId(userId);
     }
 
-    public Ser createService(Ser service) {
+    public Ser getServiceById(int serviceId) {
+        return serviceRepository.findById(serviceId).orElse(null);
+    }
+
+    public Ser createService(Ser service, User user) {
+        service = new Ser(user, service.getTitle(), service.getImagePath(), service.getPrice(),
+                service.getDescription(), service.getLocation(), service.getCategory(), service.getStatus());
         return serviceRepository.save(service);
     }
 
     public Ser updateService(int serviceId, Ser serviceDetails) {
-        return serviceRepository.findById((long) serviceId).map(service -> {
+        return serviceRepository.findById(serviceId).map(service -> {
             service.setUser(serviceDetails.getUser());
             service.setTitle(serviceDetails.getTitle());
             service.setImagePath(serviceDetails.getImagePath());
@@ -36,19 +44,20 @@ public class SerService {
             return serviceRepository.save(service);
         }).orElseThrow(() -> new RuntimeException("Service not found with id " + serviceId));
     }
-    public void save(Ser service) {
-        serviceRepository.save(service);
+
+    public void deleteService(int serviceId) {
+
+        serviceRepository.deleteById(serviceId);
     }
 
-
-    public void deleteService(Long serviceId) {
-        Ser service = serviceRepository.findById((long) serviceId).orElseThrow();
+    public void deleteServiceForAdmin(int serviceId) {
+        Ser service = serviceRepository.findById( serviceId).orElseThrow();
         service.setStatus("deleted");
         serviceRepository.save(service);
     }
 
-    public void undeleteService(Long serviceId) {
-        Ser service = serviceRepository.findById((long) serviceId).orElseThrow();
+    public void undeleteServiceForAdmin(int serviceId) {
+        Ser service = serviceRepository.findById( serviceId).orElseThrow();
         service.setStatus("available");
         serviceRepository.save(service);
     }

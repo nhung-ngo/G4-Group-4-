@@ -1,7 +1,6 @@
 package com.csc340.crudAPI.Review;
 
 import com.csc340.crudAPI.Reply.ReplyRepository;
-import com.csc340.crudAPI.service.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,12 @@ public class ReviewService {
 
     @Autowired
     private ReviewRepository reviewRepository;
-
     @Autowired
     private ReplyRepository replyRepository;
 
-
-
+    public Review getReviewById(int reviewId) {
+        return reviewRepository.findById(reviewId).orElse(null);
+    }
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }

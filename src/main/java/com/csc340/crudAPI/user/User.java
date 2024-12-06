@@ -8,7 +8,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private int userId;
 
     private String name;
     private String email;
@@ -24,12 +24,11 @@ public class User {
 
     public User() {}
 
-    public User(String name, String email, String password, String status, String role) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.status = status;
-        this.role = role;
+
     }
 
     public String getRole() {
@@ -40,12 +39,12 @@ public class User {
         this.role = role;
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
     public void setUserId(int userId) {
-        this.userId = (long) userId;
+        this.userId = userId;
     }
 
     public String getName() {

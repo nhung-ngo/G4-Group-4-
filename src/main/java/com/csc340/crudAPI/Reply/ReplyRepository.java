@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<Reply, Integer> {
     List<Reply> findByReviewReviewID(int reviewID);
-
-
     void deleteByReviewReviewID(int reviewID);
 
     @Modifying
