@@ -9,13 +9,12 @@
     <title>Update Service</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary mb-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary mb-3">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" th:href="@{/services/user/{userId}(userId=${userId})}">Provider Dashboard</a>
-        <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" th:href="@{/services/user/{userId}(userId=${userId})}">Home</a>
-            </li>
+        <a class="navbar-brand text-white" th:href="@{/services/user(userId=${userId})}">Provider Dashboard</a>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/users/profile">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -73,7 +72,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Save Changes</button>
-                            <a  th:href="@{/services/user/{userId}(userId=${userId})}" class="btn btn-secondary">Cancel</a>
+                            <a  th:href="@{/services/user(userId=${userId})}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>

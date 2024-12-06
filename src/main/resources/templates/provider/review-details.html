@@ -22,10 +22,13 @@
       <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
     </svg>
   </a>
-  <ul class="nav justify-content-end">
+  <ul class="nav bar">
+
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/" style="color: #ffff">Home</a>
+      <a class="nav-link active text-white" aria-current="page" th:href="@{/services/home}">Home</a>
     </li>
+    <li class="nav-item"><a class="nav-link" href="/users/profile">Profile</a></li>
+    <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
   </ul>
 </nav>
 <!-- End Nav Bar -->
