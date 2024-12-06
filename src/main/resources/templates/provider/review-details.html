@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6hYctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+  <title>Review Details</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body style="background-color: #F6EEC9;">
+
+<!-- Begin Nav Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #799351;">
+  <a class="navbar-brand" href="#">
+    <img src="/logo.jpg" alt="G4 Logo" class="navbar-logo" style="height: 50px;">
+  </a>
+  <a class="navbar-brand" href="/" style="margin: 10px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-card-checklist"
+         viewBox="0 0 16 16">
+      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+      <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+    </svg>
+  </a>
+  <ul class="nav bar">
+
+    <li class="nav-item">
+      <a class="nav-link active text-white" aria-current="page" th:href="@{/services/home}">Home</a>
+    </li>
+    <li class="nav-item"><a class="nav-link" th:href="@{/users/profile(userId=${userId})}">Profile</a></li>
+    <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>
+  </ul>
+</nav>
+<!-- End Nav Bar -->
+
+<div class="container" style="margin-top: 15px;">
+  <h1 th:text="${title}"></h1>
+  <div class="card">
+    <h5 class="card-header" style="background-color:#F6EEC9;">
+      Review Details
+    </h5>
+    <div class="card-body" style="background-color:#F6EEC9;">
+      <p><strong>Review ID:</strong> <span th:text="${review.reviewID}"></span></p>
+      <p><strong>Content:</strong> <span th:text="${review.content}"></span></p>
+      <p><strong>Author:</strong> <span th:text="${review.authorName}"></span></p>
+      <a th:href="@{/services/{serviceId} (serviceId=${review.service.serviceID})}" class="btn btn-primary">
+        Back to Service Details
+      </a>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 20px;">Replies</h3>
+  <div class="scrollable" style="height: 250px; overflow-y: auto; margin-bottom: 20px;">
+    <table class="table table-striped rounded-3">
+      <thead>
+      <tr>
+        <th>Reply ID</th>
+        <th>Content</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="reply : ${replies}">
+        <td th:text="${reply.replyID}"></td>
+        <td th:text="${reply.content}"></td>
+        <td>
+          <a th:href="@{/replies/delete/{id} (id=${reply.replyID})}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Post a Reply</h3>
+  <form th:action="@{/reviews/{reviewID}/reply (reviewID=${review.reviewID})}" method="post">
+    <div class="mb-3">
+      <label for="content" class="form-label">Reply Content</label>
+      <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Post Reply</button>
+  </form>
+</div>
+
+</body>
+</html>

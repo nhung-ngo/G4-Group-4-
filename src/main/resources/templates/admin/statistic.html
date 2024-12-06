@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics Overview</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body style="background-color: #F6EEC9;">
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.jpg" alt="G4 Logo" class="navbar-logo" style="height: 50px;">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/stats/overview">Statistic</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/users/all">Manage User</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1 class="text-center" style="margin-top: 10px;">System Statistics Overview</h1>
+<div class="container" style="margin-top: 10px;"> <!-- Adjust margin-top -->
+    <div class="row g-3 justify-content-center align-items-stretch">
+        <!-- Total Users Card -->
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="card text-center border-success h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Total Users</h5>
+                    <p class="card-text h3" data-th-text="${totalUsers}"></p>
+                </div>
+            </div>
+        </div>
+        <!-- Total Bookings Card -->
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="card text-center border-primary h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Total Bookings</h5>
+                    <p class="card-text h3" data-th-text="${totalBookings}"></p>
+                </div>
+            </div>
+        </div>
+        <!-- Total Reviews Card -->
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="card text-center border-warning h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Total Reviews</h5>
+                    <p class="card-text h3" data-th-text="${totalReviews}"></p>
+                </div>
+            </div>
+        </div>
+        <!-- Total Replies Card -->
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="card text-center border-danger h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Total Replies</h5>
+                    <p class="card-text h3" data-th-text="${totalReplies}"></p>
+                </div>
+            </div>
+        </div>
+        <!-- Total Services Card -->
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="card text-center border-info h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-info">Total Services</h5>
+                    <p class="card-text h3" th:text="${totalServices}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

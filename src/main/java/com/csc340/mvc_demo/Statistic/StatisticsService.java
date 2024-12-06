@@ -1,0 +1,48 @@
+package com.csc340.mvc_demo.Statistic;
+
+import com.csc340.mvc_demo.Booking.BookingRepository;
+import com.csc340.mvc_demo.Reply.ReplyRepository;
+import com.csc340.mvc_demo.Review.ReviewRepository;
+import com.csc340.mvc_demo.service.ServiceRepository;
+import com.csc340.mvc_demo.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class StatisticsService {
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private BookingRepository bookingRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
+    @Autowired
+    private ReplyRepository replyRepository;
+    @Autowired
+    ServiceRepository serviceRepository;
+
+
+    public int getTotalUsers() {
+        return userRepository.countTotalUsers();
+    }
+
+    public int getTotalBooking() {
+        return bookingRepository.countTotalBooking();
+    }
+
+
+    // Get total number of reviews
+    public int getTotalReviews() {
+        return reviewRepository.countTotalReviews();
+    }
+
+    // Get total number of replies
+    public int getTotalReplies() {
+        return replyRepository.countTotalReplies();
+    }
+
+    public int getTotalServices() { return serviceRepository.countTotalServices();
+    }
+}
+
