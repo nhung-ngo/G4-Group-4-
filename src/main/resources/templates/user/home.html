@@ -49,7 +49,7 @@
         <div class="profile-icon-container">
             <div class="profile-icon" onclick="toggleDropdown()">👤</div>
             <div class="dropdown-menu" id="dropdownMenu" style="display: none;">
-                <a href="/users/profile">Profile</a>
+                <a th:href="@{/users/profile(userId=${userId})}">Profile</a>
                 <a href="/users/logout">Log Out</a> <!-- Log Out redirects to login -->
             </div>
         </div>
@@ -72,7 +72,7 @@
                 <p class="card-text"><strong>Status:</strong> <span th:text="${service.status}"></span></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <td><a th:href="@{/services/user/{serviceId}(serviceId=${service.serviceId})}" class="btn btn-warning btn-sm">View</a></td>
+                <td><a th:href="@{/services/{serviceId}/user/{userId}(serviceId=${service.serviceId}, userId=${userId})}" class="btn btn-warning btn-sm">View</a></td>
             </div>
         </div>
     </div>

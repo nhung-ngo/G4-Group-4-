@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -31,7 +30,7 @@ public class UserController {
             int userId = user.getUserId();
             model.addAttribute("userId", userId);
             model.addAttribute("user", user);
-            return "redirect:/services/home"; // Redirect to the dashboard or another page
+            return "redirect:/services/home?userId=" + userId; // Redirect to the dashboard or another page
         } else {
             model.addAttribute("error", "Invalid email or password");
             return "user/login";
@@ -59,6 +58,41 @@ public class UserController {
         // Add any session clearing logic here, if needed
         return "redirect:/users/login";
     }
+    @GetMapping("/profile")
+    public String getUserProfile(Model model, @RequestParam("userId") int userId) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("userId", userId);
+        model.addAttribute("user", user);
+        return "user/profile";
+    }
+
+    // Display the user update page
+    @GetMapping("/edit")
+    public String showUpdateForm(@RequestParam("userId") int userId, Model model) {
+        // Retrieve the user by ID
+        User user = userService.getUserById(userId);
+        model.addAttribute("userId", userId);
+        if (user == null) {
+            throw new IllegalArgumentException("Invalid user ID: " + userId);
+        }
+
+        // Add user data to the model
+
+        model.addAttribute("user", user);
+
+        // Return the update view
+        return "user/update"; // Name of the Thymeleaf template file (user-update.html)
+    }
+
+    @PostMapping("/update")
+    public String updateUser( User user, Model model) {
+        int userId = user.getUserId();
+        model.addAttribute("userId", userId);
+        userService.updateUser(user); // Update the user in the database
+        model.addAttribute("message", "Profile updated successfully!");
+        return "redirect:/users/profile?userId=" + userId; // Redirect to the profile page
+    }
+
 
     @GetMapping("/ADMIN/all")
     public String getAllUsers(Model model) {
@@ -81,35 +115,6 @@ public class UserController {
 
 
 
-
-
-    @GetMapping("/all")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
-    @GetMapping("/{userId}")
-    public User getUserById(@PathVariable int userId) {
-        return userService.getUserById(userId);
-    }
-
-
-
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
-
-    @PutMapping("/{userId}")
-    public User updateUser(@PathVariable int userId, @RequestBody User userDetails) {
-        return userService.updateUser(userId, userDetails);
-    }
-
-    @DeleteMapping("/{userId}")
-    public List<User> deleteUser(@PathVariable int userId) {
-        userService.deleteUser(userId);
-        return userService.getAllUsers();
-    }
 
     @GetMapping("/email")
     public Optional<User> getUserByEmail(@RequestParam String email) {

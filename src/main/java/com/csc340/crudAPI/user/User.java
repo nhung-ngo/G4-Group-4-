@@ -1,10 +1,8 @@
 package com.csc340.crudAPI.user;
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
-@Table(name = "user")
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +13,7 @@ public class User {
     private String password;
     private String status;
 
-    @Column(nullable = false)
-    private String role; // Either "ADMIN" or "CUSTOMER"
-
-
     // Constructors, Getters, and Setters
-
 
     public User() {}
 
@@ -28,15 +21,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public int getUserId() {
@@ -77,19 +61,5 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userId, user.userId) &&
-                Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, email);
     }
 }

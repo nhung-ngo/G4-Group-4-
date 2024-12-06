@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class SerService {
-    private static final String IMAGE_UPLOAD_DIR = "uploads/";
+
 
     @Autowired
     private ServiceRepository serviceRepository;

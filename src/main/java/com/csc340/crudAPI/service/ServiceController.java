@@ -37,18 +37,20 @@ public class ServiceController {
 
     //User
     // Get all services
-    @GetMapping("/home")
-    public String getAllServices(Model model) {
-        List<Ser> serviceList = serviceRepository.findAll();
 
+    @GetMapping("/home")
+    public String getAllServices(@RequestParam("userId") int userId, Model model) {
+        List<Ser> serviceList = serviceRepository.findAll();
+        model.addAttribute("userId", userId);
         model.addAttribute("serviceList", serviceList);  // Passing services to the view
         model.addAttribute("title", "All Services");
         return "user/home";  // Returning the name of your template
     }
 
-    @GetMapping("/user/{serviceId}")
-    public String getServiceDetails(@PathVariable int serviceId, Model model) {
+    @GetMapping("/{serviceId}/user/{userId}")
+    public String getServiceDetails(@PathVariable int serviceId, @PathVariable int userId, Model model) {
         Ser service = serviceService.getServiceById(serviceId);
+        model.addAttribute("userId",userId);
         model.addAttribute("service", service);
         model.addAttribute("title", "Service Details");
         return "user/service-details"; // Renders service-details.html
@@ -136,6 +138,8 @@ public class ServiceController {
      */
     @GetMapping("/update/{serviceId}")
     public String showUpdateForm(@PathVariable int serviceId, Model model) {
+        int userId = serviceService.getServiceById(serviceId).getUser().getUserId();
+        model.addAttribute("userId", userId);
         model.addAttribute("service", serviceService.getServiceById(serviceId)); // Populate with existing data
         return "provider/service-update"; // Reusing the service-update.html template for both create and edit
     }

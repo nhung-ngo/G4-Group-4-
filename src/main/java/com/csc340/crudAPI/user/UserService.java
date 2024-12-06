@@ -1,16 +1,13 @@
 package com.csc340.crudAPI.user;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Service;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
 @Service
-public class UserService {
+public class UserService{
     @Autowired
     private  UserRepository userRepository;
     public User authenticate(String email, String password) {
@@ -33,15 +30,17 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User updateUser(int userId, User userDetails) {
-        return userRepository.findById(userId).map(user -> {
-            user.setName(userDetails.getName());
-            user.setEmail(userDetails.getEmail());
-            user.setPassword(userDetails.getPassword());
-            user.setStatus(userDetails.getStatus());
-            return userRepository.save(user);
-        }).orElseThrow(() -> new RuntimeException("User not found with id " + userId));
+    public void updateUser(User user) {
+        User existingUser = userRepository.findById(user.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + user.getUserId()));
+        existingUser.setName(user.getName());
+        existingUser.setEmail(user.getEmail());
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existingUser.setPassword(user.getPassword());
+        }
+        userRepository.save(existingUser);
     }
+
 
     public void deleteUser(int userId) {
         userRepository.deleteById(userId);
