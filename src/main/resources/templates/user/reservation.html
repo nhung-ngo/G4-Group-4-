@@ -52,6 +52,7 @@
 
         <div class="text-end">
           <button type="submit" class="btn btn-success">Confirm Reservation</button>
+          <a  th:href="@{/services/{serviceId}/user/{userId}(serviceId=${service.serviceId}, userId=${userId})}" class="btn btn-secondary">Cancel</a>
         </div>
       </form>
     </div>

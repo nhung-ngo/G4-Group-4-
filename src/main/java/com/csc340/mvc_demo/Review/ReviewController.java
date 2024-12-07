@@ -2,6 +2,7 @@ package com.csc340.mvc_demo.Review;
 
 import com.csc340.mvc_demo.Reply.Reply;
 import com.csc340.mvc_demo.Reply.ReplyService;
+import com.csc340.mvc_demo.service.Ser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,31 +20,35 @@ public class ReviewController {
     @Autowired
     private ReplyService replyService;
 
+    @GetMapping("/{reviewID}")
+    public String getReviewDetails(@PathVariable int reviewID, Model model) {
+        Review review = reviewService.getReviewById(reviewID);
+        List<Reply> replies = replyService.getRepliesByReviewId(reviewID);
+        Ser service = reviewService.getServiceByReviewId(reviewID);
+        model.addAttribute("service", service);
+        model.addAttribute("review", review);
+        model.addAttribute("replies", replies);
+        model.addAttribute("title", "Review Details");
 
-    // POST a reply to a specific review
-    @PostMapping("/{reviewID}/reply")
-    public String createReplyForReview(@PathVariable int reviewID,
-                                       @RequestParam String content,
-                                       @RequestParam int serviceID,
-                                       Model model) {
-        // Create a new reply object and associate it with the review
-        Reply reply = new Reply(content, reviewService.getReviewById(reviewID));
-
-        // Save the reply and retrieve the updated list of replies
-
-        // Fetch the service details and reviews again to refresh the page
-        model.addAttribute("service", reviewService.getReviewsByServiceID(serviceID));
-        List<Review> reviews = reviewService.getReviewsByServiceID(serviceID);
-        model.addAttribute("reviews", reviews);
-        for (Review review : reviews) {
-            int reviewId = review.getReviewID();
-            List<Reply> replies = replyService.getRepliesByReviewId(reviewId);
-            model.addAttribute("replies_" + reviewId, replies);
-        }
-
-        // Redirect back to the service details page
-        return "redirect:/reviews/services/" + serviceID;
+        return "provider/review-details"; // Thymeleaf template for review details
     }
+
+    @PostMapping("/reviews")
+    public String postReview(@RequestParam("serviceId") int serviceId,
+                             @RequestParam("userId") int userId,
+                             @RequestParam("rating") int rating,
+                             @RequestParam("reviews") String reviews,
+                             Model model) {
+        try {
+            reviewService.addReview(serviceId, userId, rating, reviews);
+            model.addAttribute("success", "Review posted successfully!");
+        } catch (Exception e) {
+            model.addAttribute("error", "Error posting review: " + e.getMessage());
+        }
+        return "redirect:/services/" + serviceId + "/user/" + userId;
+    }
+
+
 
     // GET all reviews
     @GetMapping("/all")

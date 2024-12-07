@@ -15,9 +15,16 @@ public class ReplyService {
 
     @Autowired
     private ReviewService reviewService;
+
+    public Reply getReplyById(int replyId) {
+        return replyRepository.findById(replyId).orElse(null);
+
+    }
+
     public List<Reply> getAllReplies() {
         return replyRepository.findAll();
     }
+
     public List<Reply> getRepliesByReviewId(int reviewID) {
         return replyRepository.findByReviewReviewID(reviewID);
     }
@@ -35,6 +42,6 @@ public class ReplyService {
     public void deleteReplyById(int replyID) {
         replyRepository.deleteById(replyID);
     }
-    
+
 }
 
