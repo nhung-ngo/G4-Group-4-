@@ -26,10 +26,10 @@ public class AdminController {
         if (admin != null) {
             int adminId = admin.getAdminId();
             model.addAttribute("adminId", adminId);
-            return "admin/statistic"; // Render a success page
+            return "redirect:/stats/overview"; // Render a success page
         } else {
             model.addAttribute("error", "Invalid username or password");
-            return "admin/admin-login"; // Reload the login page with an error message
+            return "redirect:/admin/login"; // Reload the login page with an error message
         }
     }
 
