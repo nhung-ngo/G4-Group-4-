@@ -143,26 +143,4 @@ public class ServiceController {
         return "redirect:/services/user?userId=" + userId; // Redirect to the list of services after deletion
     }
 
-
-    //ADMiN
-    //Get all services
-    @GetMapping("/all")
-    public String getAllServicesForAdmin(Model model) {
-        model.addAttribute("serviceList", serviceService.getAllServices());
-        return "admin-management";
-    }
-
-    @PostMapping("/delete/{serviceId}")
-    public String deleteService(@PathVariable int serviceId) {
-        serviceService.deleteServiceForAdmin(serviceId);
-        return "redirect:/users/all";
-    }
-    @PostMapping("/undelete/{serviceId}")
-    public String undeleteService(@PathVariable int serviceId) {
-        serviceService.undeleteServiceForAdmin(serviceId);
-        return "redirect:/users/all";
-    }
-
-
-
 }

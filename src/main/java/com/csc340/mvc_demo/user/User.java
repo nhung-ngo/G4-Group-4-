@@ -13,6 +13,7 @@ public class User {
     private String password;
     private String status;
 
+
     // Constructors, Getters, and Setters
 
     public User() {}

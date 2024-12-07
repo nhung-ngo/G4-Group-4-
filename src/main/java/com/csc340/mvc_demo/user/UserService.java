@@ -1,5 +1,9 @@
 package com.csc340.mvc_demo.user;
 
+import com.csc340.mvc_demo.Booking.BookingRepository;
+import com.csc340.mvc_demo.Reply.ReplyRepository;
+import com.csc340.mvc_demo.Review.ReviewRepository;
+import com.csc340.mvc_demo.service.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +14,7 @@ import java.util.Optional;
 public class UserService{
     @Autowired
     private  UserRepository userRepository;
+
     public User authenticate(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
@@ -26,10 +31,6 @@ public class UserService{
         return userRepository.findById(userId).orElse(null);
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-
     public void updateUser(User user) {
         User existingUser = userRepository.findById(user.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found: " + user.getUserId()));
@@ -44,7 +45,9 @@ public class UserService{
 
     public void deleteUser(int userId) {
         userRepository.deleteById(userId);
+
     }
+
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }

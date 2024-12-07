@@ -21,8 +21,10 @@ public class BookingController {
 
     @Autowired
     private SerService serviceService;
+
     @Autowired
     private UserService userService;
+
     @GetMapping("/new/{serviceId}/user/{userId}")
     public String showReservationPage(@PathVariable int serviceId, Model model,@PathVariable int userId) {
         Ser service = serviceService.getServiceById(serviceId); // Fetch service details
@@ -51,35 +53,20 @@ public class BookingController {
         return "user/history";
     }
 
-    // GET all bookings
-    @GetMapping("/all")
-    public List<Booking> getAllBookings() {
-        return bookingService.getAllBookings();
+    @GetMapping("/service/{serviceId}")
+    public String viewBookings(@PathVariable int serviceId, Model model) {
+        List<Booking> bookings = bookingService.getBookingsByService(serviceId);
+        model.addAttribute("bookings", bookings);
+        model.addAttribute("serviceId", serviceId);
+        return "provider/bookings";
     }
 
-    // GET a booking by ID
-    @GetMapping("/{id}")
-    public Optional<Booking> getBookingById(@PathVariable Integer id) {
-        return bookingService.getBookingById(id);
-    }
-
-    // POST a new booking
-    @PostMapping
-    public Booking createBooking(@RequestBody Booking booking) {
-        return bookingService.createBooking(booking);
-
-    }
-
-    // PUT to update an existing booking
-    @PutMapping("/{id}")
-    public Booking updateBooking(@PathVariable int id, @RequestBody Booking bookingdetails) {
-        return bookingService.updateBooking(id, bookingdetails);
-    }
-
-    // DELETE a booking
-    @DeleteMapping("/{id}")
-    public List<Booking> deleteBooking(@PathVariable Integer id) {
-         bookingService.deleteBooking(id);
-         return bookingService.getAllBookings();
+    // Confirm a pending booking
+    @PostMapping("provider/confirm/{bookingId}")
+    public String confirmBooking(@PathVariable int bookingId) {
+        Booking booking = bookingService.getBookingById(bookingId);
+        int serviceId = booking.getService().getServiceId();
+        bookingService.confirmBooking(bookingId);
+        return "redirect:/booking/service/" + serviceId;
     }
 }

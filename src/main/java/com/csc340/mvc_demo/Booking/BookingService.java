@@ -18,30 +18,29 @@ public class BookingService {
     public List<Booking> getBookingsByUserId(int userId) {
         return bookingRepository.findByUserUserId(userId);
     }
-    public List<Booking> getAllBookings() {
-        return bookingRepository.findAll();
-    }
-
-    public Optional<Booking> getBookingById(int bookingId) {
-        return bookingRepository.findById( bookingId);
+    public Booking getBookingById(int bookingId) {
+        return bookingRepository.findById(bookingId).orElse(null);
     }
 
     public Booking createBooking(Booking booking) {
         return bookingRepository.save(booking);
     }
 
-    public Booking updateBooking(int bookingID, Booking bookingDetails) {
-        return bookingRepository.findById(bookingID).map(booking -> {
-            booking.setUser(bookingDetails.getUser());
-            booking.setService(bookingDetails.getService()) ;
-            booking.setTotalPayment(bookingDetails.getTotalPayment());
-            booking.setStatus(bookingDetails.getStatus());
-            return bookingRepository.save(booking);
-        }) .orElseThrow(() -> new RuntimeException("Service not found with id " + bookingID));
-    }
-
     public void deleteBooking(int bookingID) {
         bookingRepository.deleteById(bookingID);
+    }
+
+    // Get all bookings for a specific service
+    public List<Booking> getBookingsByService(int serviceId) {
+        return bookingRepository.findByServiceServiceId(serviceId);
+    }
+
+    // Update booking status to "confirmed"
+    public void confirmBooking(int bookingId) {
+        Booking booking = bookingRepository.findById(bookingId).orElse(null);
+            booking.setStatus("confirmed");
+            bookingRepository.save(booking);
+
     }
 
 }

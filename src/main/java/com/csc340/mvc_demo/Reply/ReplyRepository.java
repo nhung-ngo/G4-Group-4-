@@ -19,5 +19,7 @@ public interface ReplyRepository extends JpaRepository<Reply, Integer> {
 
     @Query("SELECT COUNT(rep) FROM Reply rep")
     int countTotalReplies();
+
+
 }
 

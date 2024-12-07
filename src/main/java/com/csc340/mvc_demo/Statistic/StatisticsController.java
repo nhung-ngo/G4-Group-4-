@@ -13,13 +13,14 @@ public class StatisticsController {
 
 
 
-    @GetMapping("/ADMIN/stats/overview")
+    @GetMapping("stats/overview")
     public String getStatisticsOverview(Model model) {
         model.addAttribute("totalUsers", statisticService.getTotalUsers());
         model.addAttribute("totalBookings", statisticService.getTotalBooking());
         model.addAttribute("totalReviews", statisticService.getTotalReviews());
         model.addAttribute("totalReplies", statisticService.getTotalReplies());
-        return "statistic";
+        model.addAttribute("totalServices", statisticService.getTotalServices());
+        return "admin/statistic";
     }
 }
 

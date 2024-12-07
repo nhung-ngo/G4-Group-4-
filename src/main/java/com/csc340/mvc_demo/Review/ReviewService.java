@@ -37,9 +37,6 @@ public class ReviewService {
         return reviewRepository.findByServiceID(serviceID);
     }
 
-    public Review createReview(Review review) {
-        return reviewRepository.save(review);
-    }
 
     public void deleteReviewById(int reviewID) {
         replyRepository.deleteByReviewId(reviewID);

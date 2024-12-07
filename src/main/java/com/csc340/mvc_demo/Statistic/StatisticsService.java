@@ -3,6 +3,8 @@ package com.csc340.mvc_demo.Statistic;
 import com.csc340.mvc_demo.Booking.BookingRepository;
 import com.csc340.mvc_demo.Reply.ReplyRepository;
 import com.csc340.mvc_demo.Review.ReviewRepository;
+import com.csc340.mvc_demo.service.SerService;
+import com.csc340.mvc_demo.service.ServiceRepository;
 import com.csc340.mvc_demo.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,8 @@ public class StatisticsService {
     private ReviewRepository reviewRepository;
     @Autowired
     private ReplyRepository replyRepository;
-
+    @Autowired
+    private ServiceRepository serviceRepository;
 
 
     public int getTotalUsers() {
@@ -29,6 +32,7 @@ public class StatisticsService {
     public int getTotalBookingForAService(int serviceid) {
         return bookingRepository.countTotalBookingForAService(serviceid);
     }
+    public int getTotalServices() {return serviceRepository.countTotalServices();}
 
     public int getTotalBooking() {
         return bookingRepository.countTotalBooking();

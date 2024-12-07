@@ -26,10 +26,9 @@ public class UserController {
     @PostMapping("/login")
     public String handleLogin(@RequestParam String email, @RequestParam String password, Model model) {
         User user = userService.authenticate(email, password);
-        String status = user.getStatus();
-        System.out.println(status);
         if (user != null) {
-            if(!status.equals("ban")) {
+            String status = user.getStatus();
+            if(!status.equals("banned")) {
                 int userId = user.getUserId();
                 model.addAttribute("userId", userId);
                 model.addAttribute("user", user);
@@ -101,26 +100,31 @@ public class UserController {
         return "redirect:/users/profile?userId=" + userId; // Redirect to the profile page
     }
 
+    @PostMapping("/delete/{userId}")
+    public String deleteUser(@PathVariable int userId) {
+        userService.deleteUser(userId); // Implement this in your service
+        return "redirect:/users/login"; // Redirect to logout or home after deletion
+    }
 
-    @GetMapping("/ADMIN/all")
+
+    @GetMapping("/all")
     public String getAllUsers(Model model) {
         model.addAttribute("userList", userService.getAllUsers());
         model.addAttribute("reviewList", reviewService.getAllReviews()); // Review list
-        return "admin-management";
+        return "admin/admin-management";
     }
 
     @PostMapping("/ban/{userId}")
     public String banUser(@PathVariable int userId) {
         userService.banUser(userId);
-        return "redirect:/ADMIN/all";
+        return "redirect:/users/all";
     }
 
     @PostMapping("/unban/{userId}")
     public String unbanUser(@PathVariable int userId) {
         userService.unbanUser(userId);
-        return "redirect:/ADMIN/all";
+        return "redirect:/users/all";
     }
-
 
 
 
