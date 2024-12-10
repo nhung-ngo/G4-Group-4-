@@ -1,10 +1,12 @@
 package com.csc340.mvc_demo.user;
+import com.csc340.mvc_demo.Review.Review;
 import com.csc340.mvc_demo.Review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -131,11 +133,13 @@ public class UserController {
         return "redirect:/users/all";
     }
 
-
-
-    @GetMapping("/email")
-    public Optional<User> getUserByEmail(@RequestParam String email) {
-        return userService.getUserByEmail(email);
+    @GetMapping("/admin/search")
+    public String searchUsers(@RequestParam("name") String name, Model model) {
+        List<User> filteredUsers = userService.findUsersByName(name);
+        List<Review> filteredReviews = reviewService.findReviewsByUserName(name);
+        model.addAttribute("reviewList", filteredReviews);
+        model.addAttribute("userList", filteredUsers);
+        return "admin/admin-management"; // Ensure this matches your actual template file name
     }
 }
 

@@ -19,6 +19,10 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query("SELECT COUNT(r) FROM Review r")
     int countTotalReviews();
 
+    @Query("SELECT r FROM Review r WHERE LOWER(r.user.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    List<Review> findReviewsByUserName(@Param("name") String name);
 
+    @Query(value =  "SELECT COUNT(reviewid) FROM reviews where service_id=?1 ", nativeQuery = true)
+    int countTotalReviewsForAService(int serviceid);
 }
 

@@ -54,8 +54,8 @@ public class UserService{
 
     }
 
-    public Optional<User> getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public List<User> findUsersByName(String name) {
+        return userRepository.findByNameContainingIgnoreCase(name);
     }
 
     public void banUser(int userId) {

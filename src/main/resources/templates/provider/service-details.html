@@ -41,8 +41,30 @@
         View Reservations
       </a>
       <a  th:href="@{/services/user(userId=${userId})}" class="btn btn-secondary">Back to All Services</a>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewStatsModal">
+          View Stats
+        </button>
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="viewStatsModal" tabindex="-1" aria-labelledby="viewStatsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewStatsModalLabel">Service Stats</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Total Bookings:</strong> <span data-th-text="${totalBookings}">0</span></p>
+        <p><strong>Total Reviews:</strong> <span data-th-text="${totalReviews}">0</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <h2>Reviews</h2>

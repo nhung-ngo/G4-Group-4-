@@ -1,5 +1,6 @@
 package com.csc340.mvc_demo.service;
 
+import com.csc340.mvc_demo.Booking.BookingService;
 import com.csc340.mvc_demo.Reply.ReplyService;
 import com.csc340.mvc_demo.Review.Review;
 import com.csc340.mvc_demo.Review.ReviewService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @Controller
@@ -33,6 +35,8 @@ public class ServiceController {
 
     @Autowired
     private ReviewService reviewService;
+    @Autowired
+    private BookingService bookingService;
 
 
     //User
@@ -83,6 +87,10 @@ public class ServiceController {
     @GetMapping("/{serviceId}")
     public String getServiceById(@PathVariable int serviceId, Model model) {
         int userId = serviceService.getServiceById(serviceId).getUser().getUserId();
+        int totalBookings = bookingService.countTotalBookingsByServiceId(serviceId);
+        int totalReviews = reviewService.countTotalReviewsForService(serviceId);
+        model.addAttribute("totalReviews", totalReviews);
+        model.addAttribute("totalBookings", totalBookings);
         model.addAttribute("userId", userId);
         model.addAttribute("service", serviceService.getServiceById(serviceId));
         List<Review> reviews = reviewService.getReviewsByServiceID(serviceId);

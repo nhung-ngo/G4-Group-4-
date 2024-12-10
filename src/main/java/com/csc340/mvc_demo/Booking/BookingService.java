@@ -43,4 +43,15 @@ public class BookingService {
 
     }
 
+    public void cancelBooking(int bookingId) {
+        Booking booking = bookingRepository.findById(bookingId).orElse(null);
+        booking.setStatus("canceled");
+        bookingRepository.save(booking);
+
+    }
+
+    public int countTotalBookingsByServiceId(int serviceId){
+        return bookingRepository.countTotalBookingForAService(serviceId);
+    }
+
 }

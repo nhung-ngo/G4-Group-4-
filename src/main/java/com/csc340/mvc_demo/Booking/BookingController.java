@@ -61,12 +61,19 @@ public class BookingController {
         return "provider/bookings";
     }
 
-    // Confirm a pending booking
     @PostMapping("provider/confirm/{bookingId}")
     public String confirmBooking(@PathVariable int bookingId) {
         Booking booking = bookingService.getBookingById(bookingId);
         int serviceId = booking.getService().getServiceId();
         bookingService.confirmBooking(bookingId);
+        return "redirect:/booking/service/" + serviceId;
+    }
+
+    @PostMapping("provider/cancel/{bookingId}")
+    public String cancelBooking(@PathVariable int bookingId) {
+        Booking booking = bookingService.getBookingById(bookingId);
+        int serviceId = booking.getService().getServiceId();
+        bookingService.cancelBooking(bookingId);
         return "redirect:/booking/service/" + serviceId;
     }
 }

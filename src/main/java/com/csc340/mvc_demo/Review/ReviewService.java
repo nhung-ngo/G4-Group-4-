@@ -59,5 +59,12 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    public List<Review> findReviewsByUserName(String name) {
+        return reviewRepository.findReviewsByUserName(name);
+    }
+
+    public int countTotalReviewsForService(int serviceId) {
+        return reviewRepository.countTotalReviewsForAService(serviceId);
+    }
 }
 

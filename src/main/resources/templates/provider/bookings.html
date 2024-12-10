@@ -16,7 +16,8 @@
       <th>User Name</th>
       <th>Total Payment</th>
       <th>Status</th>
-      <th>Actions</th>
+      <th>Confirm
+      <th>Cancel</th>
     </tr>
     </thead>
     <tbody>
@@ -30,8 +31,13 @@
           <button class="btn btn-success" th:if="${booking.status.equals('pending')}" type="submit">
             Confirm
           </button>
-
-
+        </form>
+      </td>
+      <td>
+        <form data-th-action="@{/booking/provider/cancel/{bookingId}(bookingId=${booking.bookingID})}" method="post">
+          <button class="btn btn-success" th:if="${booking.status.equals('pending')}" type="submit">
+            Cancel
+          </button>
         </form>
       </td>
     </tr>
