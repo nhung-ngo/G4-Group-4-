@@ -31,8 +31,10 @@
       <h1 class="display-4" data-th-text="${title}">Services List</h1>
     </div>
     <div class="col-auto">
-      <form class="d-flex" action="/services/search" method="get">
-        <input class="form-control me-2" type="text" name="title" placeholder="Search By Title &#128270;">
+      <form th:action="@{/services/title/{userId}/search(userId=${userId})}" method="get" class="d-flex">
+        <input type="text" name="title" placeholder="Search by name..." class="form-control w-50 ms-3" />
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <button type="submit" class="btn btn-primary ms-2">Search</button>
       </form>
     </div>
   </div>

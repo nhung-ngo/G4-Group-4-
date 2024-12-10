@@ -47,7 +47,11 @@
 <!-- Navigation Bar -->
 <header class="navbar navbar-expand-lg navbar-dark bg-secondary mb-3">
     <div><img src="/logo.jpg" alt="G4 Logo" class="navbar-logo" style="height: 50px;"></div>
-    <input type="text" placeholder="Search services..." class="form-control w-50 ms-3">
+    <form th:action="@{/services/category/{userId}/search(userId=${userId})}" method="get" class="d-flex">
+        <input type="text" name="category" placeholder="Search services by category..." class="form-control w-50 ms-3" />
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <button type="submit" class="btn btn-primary ms-2">Search</button>
+    </form>
     <div class="ms-auto d-flex align-items-center">
         <a class="btn btn-light me-3"  th:href="@{/services/user(userId=${userId})}" >Switch to Host</a>
         <div class="profile-icon-container">

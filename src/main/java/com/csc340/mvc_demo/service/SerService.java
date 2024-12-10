@@ -1,4 +1,7 @@
 package com.csc340.mvc_demo.service;
+import com.csc340.mvc_demo.Booking.BookingRepository;
+import com.csc340.mvc_demo.Reply.ReplyRepository;
+import com.csc340.mvc_demo.Review.ReviewRepository;
 import com.csc340.mvc_demo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,12 @@ public class SerService {
 
     @Autowired
     private ServiceRepository serviceRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
+    @Autowired
+    private BookingRepository bookingRepository;
+    @Autowired
+    private ReplyRepository replyRepository;
 
     public List<Ser> getAllServices() {
         return serviceRepository.findAll();
@@ -50,15 +59,11 @@ public class SerService {
         serviceRepository.deleteById(serviceId);
     }
 
-    public void deleteServiceForAdmin(int serviceId) {
-        Ser service = serviceRepository.findById( serviceId).orElseThrow();
-        service.setStatus("deleted");
-        serviceRepository.save(service);
+    public List<Ser> findServicesByCategory(String category) {
+        return serviceRepository.findByCategoryContainingIgnoreCase(category);
     }
 
-    public void undeleteServiceForAdmin(int serviceId) {
-        Ser service = serviceRepository.findById( serviceId).orElseThrow();
-        service.setStatus("available");
-        serviceRepository.save(service);
+    public List<Ser> findServicesByTitle(String title) {
+        return serviceRepository.findByTitleContainingIgnoreCase(title);
     }
 }

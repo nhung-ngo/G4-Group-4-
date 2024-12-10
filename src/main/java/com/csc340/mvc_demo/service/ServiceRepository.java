@@ -16,6 +16,8 @@ public interface ServiceRepository extends JpaRepository<Ser, Integer> {
     @Query(value = "SELECT COUNT(service_id) FROM service", nativeQuery = true)
     int countTotalServices();
 
+    List<Ser> findByCategoryContainingIgnoreCase(String category);
 
+    List<Ser> findByTitleContainingIgnoreCase(String title);
 
 }

@@ -1,7 +1,11 @@
 package com.csc340.mvc_demo.service;
 
+import com.csc340.mvc_demo.Booking.Booking;
+import com.csc340.mvc_demo.Review.Review;
 import com.csc340.mvc_demo.user.User;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Service")
@@ -9,6 +13,12 @@ public class Ser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int serviceId;
+
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Booking> bookings;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "userId")

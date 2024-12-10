@@ -21,5 +21,6 @@ public interface ReplyRepository extends JpaRepository<Reply, Integer> {
     int countTotalReplies();
 
 
+
 }
 

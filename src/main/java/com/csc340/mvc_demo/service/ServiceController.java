@@ -58,10 +58,14 @@ public class ServiceController {
         return "user/service-details"; // Renders service-details.html
     }
 
-
-
-
-
+    @GetMapping("/category/{userId}/search")
+    public String searchServicesByCategory(@RequestParam("category") String category,@PathVariable("userId") int userId,
+                                 Model model) {
+        List<Ser> filteredServices = serviceService.findServicesByCategory(category);
+        model.addAttribute("serviceList", filteredServices);
+        model.addAttribute("userId", userId);
+        return "user/home"; // The view displaying all services
+    }
 
     //provider
     @GetMapping("/user")
@@ -141,6 +145,15 @@ public class ServiceController {
         int userId = serviceService.getServiceById(serviceId).getUser().getUserId();
         serviceService.deleteService(serviceId);
         return "redirect:/services/user?userId=" + userId; // Redirect to the list of services after deletion
+    }
+
+    @GetMapping("/title/{userId}/search")
+    public String searchServicesByTitle(@RequestParam("title") String title,@PathVariable("userId") int userId,
+                                 Model model) {
+        List<Ser> filteredServices = serviceService.findServicesByTitle(title);
+        model.addAttribute("serviceList", filteredServices);
+        model.addAttribute("userId", userId);
+        return "provider/services-all"; // The view displaying all services
     }
 
 }

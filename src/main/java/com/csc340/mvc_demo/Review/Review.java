@@ -1,8 +1,11 @@
 package com.csc340.mvc_demo.Review;
 
+import com.csc340.mvc_demo.Reply.Reply;
 import com.csc340.mvc_demo.service.Ser;
 import com.csc340.mvc_demo.user.User;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "reviews")
@@ -10,6 +13,9 @@ public class  Review{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewID;
+
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reply> replies;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "userid")

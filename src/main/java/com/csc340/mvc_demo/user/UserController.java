@@ -15,7 +15,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ReviewService reviewService;
-
+    @Autowired
+    private UserRepository userRepository;
     // Display the login page
     @GetMapping("/login")
     public String showLoginPage() {
@@ -54,11 +55,15 @@ public class UserController {
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String name, @RequestParam String email,
                                @RequestParam String password, Model model) {
+
         User user = new User(name, email, password);
+        if (userRepository.existsByEmail(user.getEmail())) {
+            model.addAttribute("message","Email already in use.");
+            return "user/signup";
+        }
         user.setStatus("active"); // Set default status to "active"
         userService.saveUser(user);
-        model.addAttribute("message", "Account created successfully. Please log in.");
-        return "redirect:/users/login";
+        return "user/login";
     }
     @GetMapping("/logout")
     public String logout() {
@@ -103,7 +108,7 @@ public class UserController {
     @PostMapping("/delete/{userId}")
     public String deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId); // Implement this in your service
-        return "redirect:/users/login"; // Redirect to logout or home after deletion
+        return "redirect:/users/login";
     }
 
 

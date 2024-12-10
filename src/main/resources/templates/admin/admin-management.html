@@ -51,6 +51,7 @@
           <form data-th-action="@{/users/unban/{userId}(userId=${user.userId})}" method="post" style="display:inline;">
             <button type="submit" class="btn btn-success" data-th-if="${user.status == 'banned'}">Unban</button>
           </form>
+
         </td>
       </tr>
       </tbody>
@@ -62,7 +63,7 @@
         <th>Review ID</th>
         <th>Content</th>
         <th>Rating</th>
-        <th>UserName</th>
+        <th>Name</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -78,10 +79,13 @@
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
 
+
           <!-- Ban User -->
           <form data-th-action="@{/users/ban/{userId}(userId=${review.user.userId})}" method="post" style="display:inline;">
             <button type="submit" class="btn btn-warning" data-th-if="${review.user.status != 'banned'}">Ban</button>
           </form>
+
+
         </td>
       </tr>
       </tbody>

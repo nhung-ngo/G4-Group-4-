@@ -15,6 +15,8 @@ public class UserService{
     @Autowired
     private  UserRepository userRepository;
 
+
+
     public User authenticate(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
@@ -29,6 +31,10 @@ public class UserService{
 
     public User getUserById(int userId) {
         return userRepository.findById(userId).orElse(null);
+    }
+
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
     public void updateUser(User user) {

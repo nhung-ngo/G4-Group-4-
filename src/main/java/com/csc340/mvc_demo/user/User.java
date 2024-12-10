@@ -1,5 +1,11 @@
 package com.csc340.mvc_demo.user;
+import com.csc340.mvc_demo.service.Ser;
+import com.csc340.mvc_demo.Review.Review;
+import com.csc340.mvc_demo.Booking.Booking;
+import com.csc340.mvc_demo.Reply.Reply;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -9,11 +15,25 @@ public class User {
     private int userId;
 
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
     private String password;
+
     private String status;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ser> services;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Booking> bookings;
+
+    /*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reply> replies;*/
     // Constructors, Getters, and Setters
 
     public User() {}

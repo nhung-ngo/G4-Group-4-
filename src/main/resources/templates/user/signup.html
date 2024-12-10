@@ -9,6 +9,9 @@
 <body style="background-color: #F6EEC9;">
 <div class="container" style="margin-top: 100px; max-width: 400px;">
     <h2 class="text-center" style="color: #799351;">Sign Up</h2>
+    <div th:if="${message}" class="alert alert-danger" role="alert">
+        <span th:text="${message}"></span>
+    </div>
     <form th:action="@{/users/signup}" method="post" class="card p-4" style="border-color: #799351;">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -26,6 +29,7 @@
         <p class="text-center mt-3">
             Already have an account? <a href="/users/login" style="color: #799351;">Log in here</a>.
         </p>
+
     </form>
 </div>
 </body>
