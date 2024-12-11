@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2024 at 11:07 PM
+-- Generation Time: Dec 11, 2024 at 11:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -309,23 +309,23 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `email`, `name`, `password`, `status`) VALUES
 (1, 'john.doe@example.com', 'John Doe', 'password', 'ACTIVE'),
 (2, 'jane.smith@example.com', 'Jane Smith', 'password', 'ACTIVE'),
-(3, 'alice.jones@example.com', 'Alice Jones', 'password', 'INACTIVE'),
+(3, 'alice.jones@example.com', 'Alice Jones', 'password', 'ACTIVE'),
 (4, 'bob.miller@example.com', 'Bob Miller', 'password', 'ACTIVE'),
 (5, 'charlie.brown@example.com', 'Charlie Brown', 'password', 'ACTIVE'),
-(6, 'david.smith@example.com', 'David Smith', 'password', 'INACTIVE'),
+(6, 'david.smith@example.com', 'David Smith', 'password', 'ACTIVE'),
 (7, 'emma.white@example.com', 'Emma White', 'password', 'ACTIVE'),
-(8, 'frank.johnson@example.com', 'Frank Johnson', 'password', 'INACTIVE'),
+(8, 'frank.johnson@example.com', 'Frank Johnson', 'password', 'ACTIVE'),
 (9, 'george.williams@example.com', 'George Williams', 'password', 'ACTIVE'),
 (10, 'hannah.moore@example.com', 'Hannah Moore', 'password', 'ACTIVE'),
-(11, 'isabelle.davis@example.com', 'Isabelle Davis', 'password', 'INACTIVE'),
+(11, 'isabelle.davis@example.com', 'Isabelle Davis', 'password', 'ACTIVE'),
 (12, 'jackson.martin@example.com', 'Jackson Martin', 'password', 'ACTIVE'),
 (13, 'katherine.lee@example.com', 'Katherine Lee', 'password', 'ACTIVE'),
-(14, 'luke.white@example.com', 'Luke White', 'password', 'INACTIVE'),
+(14, 'luke.white@example.com', 'Luke White', 'password', 'ACTIVE'),
 (15, 'mary.jackson@example.com', 'Mary Jackson', 'password', 'ACTIVE'),
-(16, 'nathan.harris@example.com', 'Nathan Harris', 'password', 'INACTIVE'),
+(16, 'nathan.harris@example.com', 'Nathan Harris', 'password', 'ACTIVE'),
 (17, 'olivia.wilson@example.com', 'Olivia Wilson', 'password', 'ACTIVE'),
 (18, 'paul.martinez@example.com', 'Paul Martinez', 'password', 'ACTIVE'),
-(19, 'quinn.roberts@example.com', 'Quinn Roberts', 'password', 'INACTIVE');
+(19, 'quinn.roberts@example.com', 'Quinn Roberts', 'password', 'ACTIVE');
 
 --
 -- Indexes for dumped tables
