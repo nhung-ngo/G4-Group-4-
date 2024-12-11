@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2024 at 11:10 PM
+-- Generation Time: Dec 12, 2024 at 12:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -255,26 +255,26 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`service_id`, `category`, `description`, `image_path`, `location`, `price`, `status`, `title`, `user_id`) VALUES
-(1, 'Restaurant', 'A cozy Italian restaurant with a variety of pasta and pizza.', '/images/restaurant.jpg', 'New York, NY', 20.99, 'ACTIVE', 'Pasta Paradise', 1),
-(2, 'Restaurant', 'A vegetarian-friendly place offering fresh salads and organic dishes.', '/images/vegan.jpg', 'Los Angeles, CA', 15.5, 'ACTIVE', 'Green Delights', 1),
-(3, 'Entertainment', 'A movie theater showing the latest blockbusters and independent films.', '/images/theater.jpg', 'Chicago, IL', 12, 'ACTIVE', 'Cineplex Cinema', 1),
-(4, 'Hotel', 'A luxurious hotel offering spa services and a rooftop restaurant.', '/images/hotel.jpg', 'Miami, FL', 199.99, 'ACTIVE', 'Ocean View Resort', 4),
-(5, 'Cafe', 'A small, family-owned coffee shop with a variety of pastries and cold brews.', '/images/cafe.jpg', 'San Francisco, CA', 5.5, 'ACTIVE', 'Brewed Awakenings', 5),
-(6, 'Hotel', 'A modern hotel near the airport with free breakfast and high-speed Wi-Fi.', '/images/airport_hotel.jpg', 'Los Angeles, CA', 85, 'INACTIVE', 'Airport Stay Inn', 5),
-(7, 'Restaurant', 'A seafood restaurant offering fresh fish, lobster, and shrimp platters.', '/images/seafood.jpg', 'Seattle, WA', 30, 'ACTIVE', 'Ocean Breeze Seafood', 7),
-(8, 'Entertainment', 'A theme park featuring rides, games, and attractions for all ages.', '/images/theme_park.jpg', 'Orlando, FL', 50, 'ACTIVE', 'Fun World Theme Park', 7),
-(9, 'Tourism', 'Guided tours of the city’s historical landmarks and museums.', '/images/tour.jpg', 'Washington, DC', 25, 'ACTIVE', 'Historic DC Tours', 7),
-(10, 'Restaurant', 'A sushi bar with a wide selection of rolls and sashimi.', '/images/sushi.jpg', 'San Francisco, CA', 22, 'ACTIVE', 'Sushi House', 10),
-(11, 'Entertainment', 'An escape room challenge for teams to solve puzzles and mysteries.', '/images/escape_room.jpg', 'Chicago, IL', 35, 'ACTIVE', 'Mystery Escape', 11),
-(12, 'Hotel', 'A beachfront hotel with private pools and cabanas for relaxation.', '/images/beachfront_hotel.jpg', 'Hawaii', 350, 'ACTIVE', 'Paradise Beach Resort', 11),
-(13, 'Cafe', 'A cozy cafe offering the best cappuccinos and artisanal sandwiches.', '/images/artisan_cafe.jpg', 'Austin, TX', 7.5, 'ACTIVE', 'Artisan Brews', 11),
-(14, 'Restaurant', 'A fine dining restaurant with a 5-star chef and an extensive wine list.', '/images/fine_dining.jpg', 'New York, NY', 75, 'ACTIVE', 'Gourmet Heaven', 14),
-(15, 'Entertainment', 'An arcade with a variety of classic and modern video games.', '/images/arcade.jpg', 'Las Vegas, NV', 20, 'INACTIVE', 'Pixel Arcade', 14),
-(16, 'Hotel', 'A countryside hotel perfect for weekend getaways, with scenic views.', '/images/countryside_hotel.jpg', 'Napa Valley, CA', 150, 'ACTIVE', 'Napa Valley Inn', 16),
-(17, 'Restaurant', 'A BBQ joint offering the best ribs, brisket, and pulled pork.', '/images/bbq.jpg', 'Dallas, TX', 18, 'ACTIVE', 'Big Smoke BBQ', 17),
-(18, 'Tourism', 'A scenic helicopter tour over the Grand Canyon.', '/images/helicopter_tour.jpg', 'Grand Canyon, AZ', 200, 'ACTIVE', 'Grand Canyon Aerial Tours', 16),
-(19, 'Cafe', 'A minimalist cafe serving the best drip coffee and light snacks.', '/images/coffee.jpg', 'Portland, OR', 4.5, 'ACTIVE', 'Simple Brew', 19),
-(20, 'Hotel', 'A charming boutique hotel with personalized service and elegant rooms.', '/images/boutique_hotel.jpg', 'Paris, France', 120, 'ACTIVE', 'Chic Paris Hotel', 19);
+(1, 'Restaurant', 'A cozy Italian restaurant with a variety of pasta and pizza.', 'pasta_paradise.jpg', 'New York, NY', 20.99, 'Active', 'Pasta Paradise', 1),
+(2, 'Restaurant', 'A vegetarian-friendly place offering fresh salads and organic dishes.', 'vegan.jpg', 'Los Angeles, CA', 15.5, 'ACTIVE', 'Green Delights', 1),
+(3, 'Entertainment', 'A movie theater showing the latest blockbusters and independent films.', 'cinema.png', 'Chicago, IL', 12, 'ACTIVE', 'Cineplex Cinema', 1),
+(4, 'Hotel', 'A luxurious hotel offering spa services and a rooftop restaurant.', 'hotel.jpg', 'Miami, FL', 199.99, 'ACTIVE', 'Ocean View Resort', 4),
+(5, 'Cafe', 'A small, family-owned coffee shop with a variety of pastries and cold brews.', 'cafe.jpg', 'San Francisco, CA', 5.5, 'ACTIVE', 'Brewed Awakenings', 5),
+(6, 'Hotel', 'A modern hotel near the airport with free breakfast and high-speed Wi-Fi.', 'airport_hotel.jpg', 'Los Angeles, CA', 85, 'INACTIVE', 'Airport Stay Inn', 5),
+(7, 'Restaurant', 'A seafood restaurant offering fresh fish, lobster, and shrimp platters.', 'seafood.jpg', 'Seattle, WA', 30, 'ACTIVE', 'Ocean Breeze Seafood', 7),
+(8, 'Entertainment', 'A theme park featuring rides, games, and attractions for all ages.', 'theme_park.jpg', 'Orlando, FL', 50, 'ACTIVE', 'Fun World Theme Park', 7),
+(9, 'Tourism', 'Guided tours of the city’s historical landmarks and museums.', 'tour.jpg', 'Washington, DC', 25, 'ACTIVE', 'Historic DC Tours', 7),
+(10, 'Restaurant', 'A sushi bar with a wide selection of rolls and sashimi.', 'sushi.png', 'San Francisco, CA', 22, 'ACTIVE', 'Sushi House', 10),
+(11, 'Entertainment', 'An escape room challenge for teams to solve puzzles and mysteries.', 'escape_room.jpg', 'Chicago, IL', 35, 'ACTIVE', 'Mystery Escape', 11),
+(12, 'Hotel', 'A beachfront hotel with private pools and cabanas for relaxation.', 'beachfront_hotel.jpg', 'Hawaii', 350, 'ACTIVE', 'Paradise Beach Resort', 11),
+(13, 'Cafe', 'A cozy cafe offering the best cappuccinos and artisanal sandwiches.', 'artisan cafe.jpg', 'Austin, TX', 7.5, 'ACTIVE', 'Artisan Brews', 11),
+(14, 'Restaurant', 'A fine dining restaurant with a 5-star chef and an extensive wine list.', 'fine_dinning.jpg', 'New York, NY', 75, 'ACTIVE', 'Gourmet Heaven', 14),
+(15, 'Entertainment', 'An arcade with a variety of classic and modern video games.', 'arcade.jpg', 'Las Vegas, NV', 20, 'INACTIVE', 'Pixel Arcade', 14),
+(16, 'Hotel', 'A countryside hotel perfect for weekend getaways, with scenic views.', 'countryside_hotel.jpg', 'Napa Valley, CA', 150, 'ACTIVE', 'Napa Valley Inn', 16),
+(17, 'Restaurant', 'A BBQ joint offering the best ribs, brisket, and pulled pork.', 'bbq.png', 'Dallas, TX', 18, 'ACTIVE', 'Big Smoke BBQ', 17),
+(18, 'Tourism', 'A scenic helicopter tour over the Grand Canyon.', 'helicopter.jpg', 'Grand Canyon, AZ', 200, 'ACTIVE', 'Grand Canyon Aerial Tours', 16),
+(19, 'Cafe', 'A minimalist cafe serving the best drip coffee and light snacks.', 'coffee.jpg', 'Portland, OR', 4.5, 'ACTIVE', 'Simple Brew', 19),
+(20, 'Hotel', 'A charming boutique hotel with personalized service and elegant rooms.', 'boutique_hotel.jpg', 'Paris, France', 120, 'ACTIVE', 'Chic Paris Hotel', 19);
 
 -- --------------------------------------------------------
 
