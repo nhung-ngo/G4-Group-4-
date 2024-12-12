@@ -40,8 +40,6 @@ public class ServiceController {
 
 
     //User
-    // Get all services
-
     @GetMapping("/home")
     public String getAllServices(@RequestParam("userId") int userId, Model model) {
         List<Ser> serviceList = serviceRepository.findAll();
